@@ -37,6 +37,9 @@
              font-weight:800; font-size:13px; padding:11px 8px; border-radius:10px; }
   .comprar:active { transform:scale(.97); }
   .vazio { text-align:center; color:#888; padding:40px 10px; display:none; }
+  .pedir{display:inline-block;margin-top:14px;background:#a855f7;color:#fff;
+         text-decoration:none;font-weight:800;font-size:14px;padding:12px 20px;
+         border-radius:999px}
   footer { text-align:center; color:#666; font-size:12px; padding:26px 14px; }
 </style>
 </head>
@@ -1813,7 +1816,8 @@
            target="_blank" rel="sponsored noopener">COMPRAR COM DESCONTO</a>
       </div>
     </article></div>
-  <p class="vazio" id="vazio">Nenhum produto encontrado 😕 — tenta outro termo.</p>
+  <p class="vazio" id="vazio">Nenhum produto encontrado 😕<br>
+  <a id="pedir" class="pedir" target="_blank" href="#">🔎 Pedir esse produto no Telegram — a gente acha o mais barato</a></p>
 </main>
 <footer>
   Links de afiliado — comprando por eles você apoia o canal sem pagar mais caro. 💜
@@ -1832,6 +1836,9 @@ function filtrar(){
     if (ok) vis++;
   }
   vazio.style.display = vis ? 'none' : 'block';
+  if (!vis) document.getElementById('pedir').href =
+    'https://t.me/actionbot_ofertas_bot?start=busca_' +
+    encodeURIComponent(q.replace(/\s+/g,'_') || 'oferta');
 }
 document.getElementById('busca').addEventListener('input', filtrar);
 document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
